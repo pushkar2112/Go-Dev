@@ -8,7 +8,9 @@ func main() {
 
 	cards = append(cards, "Six of Spades") // append returns a new slice of strings
 	
-	fmt.Println(cards)	// slice of strings
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
 }
 
 func newCard() string { // function returns a string
