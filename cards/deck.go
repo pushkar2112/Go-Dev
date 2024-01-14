@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings" // string manipulation
 )
 
@@ -39,4 +40,7 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",") // convert deck to slice of strings then to string and join with comma separator
 }
 
-func (d deck) saveToFile()
+func (d deck) saveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), 0666) // 0666 is the permission to write to file
+	// ioutil is deprecated, os provides the same functionality
+}
