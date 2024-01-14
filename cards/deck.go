@@ -44,3 +44,15 @@ func (d deck) saveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.toString()), 0666) // 0666 is the permission to write to file
 	// ioutil is deprecated, os provides the same functionality
 }
+
+func newDeckFromFile(filename string) deck {
+	bs, err := os.ReadFile(filename) // returns byte slice and error
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1) // exit program
+	}
+
+	s := strings.Split(string(bs), ",") // convert byte slice to string then to slice of strings
+
+	return deck(s) // convert slice of strings to deck
+}
